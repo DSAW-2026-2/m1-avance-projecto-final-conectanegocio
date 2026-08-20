@@ -1,0 +1,63 @@
+.message-list {
+  display: flex;
+  height: 30rem;
+  padding: var(--space-medium);
+  margin: 0;
+  overflow-y: auto;
+  background: var(--surface-soft);
+  border: 0.0625rem solid var(--line);
+  border-radius: var(--radius-small);
+  list-style: none;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.message {
+  width: min(82%, 30rem);
+  padding: 0.8rem 0.9rem;
+  background: var(--surface);
+  border: 0.0625rem solid var(--line);
+  border-radius: 0.8rem 0.8rem 0.8rem 0.2rem;
+  box-shadow: 0 0.25rem 0.8rem rgb(30 34 47 / 6%);
+}
+
+.message.merchant {
+  color: #fff;
+  background: var(--navy-soft);
+  border-color: var(--navy-soft);
+  border-radius: 0.8rem 0.8rem 0.2rem;
+  align-self: flex-end;
+}
+
+.message-author {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.65rem;
+  font-weight: 850;
+}
+
+.message p {
+  margin-bottom: var(--space-xs);
+  font-size: 0.84rem;
+}
+
+.message time {
+  color: var(--muted);
+  font-size: 0.6rem;
+}
+
+.message.merchant time {
+  color: #c4c9d4;
+}
+
+.message-form {
+  display: grid;
+  margin-top: 0.8rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.65rem;
+}
+
+.message-form textarea {
+  min-height: 4.2rem;
+}

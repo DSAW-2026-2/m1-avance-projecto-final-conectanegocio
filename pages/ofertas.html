@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ofertas comparables para el comerciante en ConectaNegocio.">
+    <title>Ofertas | ConectaNegocio</title>
+    <script src="../js/theme-init.js"></script>
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+    <link rel="stylesheet" href="../css/pages/ofertas.css">
+  </head>
+  <body data-page="ofertas">
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="site-header">
+      <div class="container header-layout">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark" aria-hidden="true">CN</span>
+          <span class="brand-name">Conecta<strong>Negocio</strong></span>
+        </a>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+          <ul class="nav-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="comerciante.html">Comerciante</a></li>
+            <li><a href="ofertas.html" aria-current="page">Ofertas</a></li>
+            <li><a href="seguimiento.html">Seguimiento</a></li>
+            <li><a href="proveedor.html">Proveedor</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-button" id="theme-toggle" type="button" aria-pressed="false">
+            <b aria-hidden="true">◐</b>
+            <span>Modo oscuro</span>
+          </button>
+          <button
+            class="icon-button mobile-nav-toggle"
+            id="mobile-nav-toggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="site-nav"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido-principal">
+      <section class="page-hero">
+        <div class="container">
+          <ol class="breadcrumbs">
+            <li><a href="comerciante.html">Panel</a></li>
+            <li>Ofertas</li>
+          </ol>
+          <div class="page-title-row">
+            <div>
+              <p class="eyebrow">Paso 1 de 5</p>
+              <h1>Ofertas</h1>
+              <p>
+                Busca productos y selecciona entre dos y tres opciones para comparar condiciones
+                equivalentes.
+              </p>
+            </div>
+            <a class="button primary" id="compare-link" href="comparador.html" aria-disabled="false">
+              Comparar <span>0</span> ofertas
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="container main-content">
+        <aside class="demo-notice panel">
+          <p>
+            <strong>Datos ficticios:</strong> selecciona ofertas del mismo producto para seguir el
+            recorrido demostrativo.
+          </p>
+        </aside>
+
+        <section class="panel" aria-labelledby="offers-title">
+          <div class="panel-heading">
+            <div>
+              <h2 id="offers-title">Catálogo de proveedores</h2>
+              <p id="result-summary" aria-live="polite">8 ofertas encontradas</p>
+            </div>
+            <button class="button ghost" id="clear-filters" type="button">Limpiar filtros</button>
+          </div>
+
+          <div class="filter-bar">
+            <label class="search-field" for="offer-search">
+              <b class="sr-only">Buscar</b>
+              <span aria-hidden="true">⌕</span>
+              <input
+                id="offer-search"
+                type="search"
+                placeholder="Producto, proveedor o ciudad…"
+                autocomplete="off"
+              >
+            </label>
+            <label for="category-filter">
+              <span>Categoría</span>
+              <select id="category-filter">
+                <option value="all">Todas</option>
+                <option value="cuadernos">Cuadernos</option>
+                <option value="papeleria">Papelería</option>
+                <option value="escritura">Escritura</option>
+                <option value="archivo">Archivo</option>
+              </select>
+            </label>
+            <label for="availability-filter">
+              <span>Disponibilidad</span>
+              <select id="availability-filter">
+                <option value="all">Cualquiera</option>
+                <option value="available">Disponible</option>
+                <option value="limited">Cupo limitado</option>
+              </select>
+            </label>
+            <label for="sort-filter">
+              <span>Orden</span>
+              <select id="sort-filter">
+                <option value="recommended">Recomendadas</option>
+                <option value="price">Menor precio</option>
+                <option value="delivery">Entrega rápida</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="table-wrap" id="offers-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col"><span class="sr-only">Seleccionar</span></th>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Proveedor</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Mínimo</th>
+                  <th scope="col">Entrega</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="offers-body"></tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="offers-empty" hidden>
+            <span class="empty-icon" aria-hidden="true">⌕</span>
+            <h3>No encontramos ofertas</h3>
+            <p>Prueba otra búsqueda o limpia los filtros para recuperar todos los resultados.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <p>ConectaNegocio · Paso siguiente: comparar ofertas.</p>
+        <div class="footer-links">
+          <a href="comerciante.html">Panel</a>
+          <a href="comparador.html">Comparador</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="global-toast" id="global-toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>
+

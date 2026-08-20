@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chat contextual entre comerciante y proveedor en ConectaNegocio.">
+    <title>Chat contextual | ConectaNegocio</title>
+    <script src="../js/theme-init.js"></script>
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+    <link rel="stylesheet" href="../css/pages/chat.css">
+  </head>
+  <body data-page="chat">
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="site-header">
+      <div class="container header-layout">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark" aria-hidden="true">CN</span>
+          <span class="brand-name">Conecta<strong>Negocio</strong></span>
+        </a>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+          <ul class="nav-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="comerciante.html">Comerciante</a></li>
+            <li><a href="ofertas.html" aria-current="page">Ofertas</a></li>
+            <li><a href="seguimiento.html">Seguimiento</a></li>
+            <li><a href="proveedor.html">Proveedor</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-button" id="theme-toggle" type="button" aria-pressed="false">
+            <b aria-hidden="true">◐</b>
+            <span>Modo oscuro</span>
+          </button>
+          <button
+            class="icon-button mobile-nav-toggle"
+            id="mobile-nav-toggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="site-nav"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido-principal">
+      <section class="page-hero">
+        <div class="container">
+          <ol class="breadcrumbs">
+            <li><a href="ofertas.html">Ofertas</a></li>
+            <li><a href="comparador.html">Comparador</a></li>
+            <li>Chat</li>
+          </ol>
+          <div class="page-title-row">
+            <div>
+              <p class="eyebrow">Paso 3 de 5</p>
+              <h1>Chat contextual</h1>
+              <p>
+                La conversación conserva el producto, el proveedor y el precio que originaron la
+                consulta.
+              </p>
+            </div>
+            <a class="button primary" id="chat-order-link" href="pedido.html">Crear pedido</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="container main-content chat-layout">
+        <aside class="panel" aria-labelledby="context-title">
+          <div class="panel-heading">
+            <div>
+              <h2 id="context-title">Contexto comercial</h2>
+              <p>Visible para ambas partes.</p>
+            </div>
+          </div>
+          <div class="context-card">
+            <small>Proveedor</small>
+            <strong id="chat-provider">—</strong>
+            <small>Producto</small>
+            <span id="chat-product">—</span>
+            <small>Precio publicado</small>
+            <strong id="chat-offer-price">—</strong>
+          </div>
+          <ul class="summary-list">
+            <li><span>Participantes</span><strong>Carolina + proveedor</strong></li>
+            <li><span>Estado</span><strong>Negociación abierta</strong></li>
+            <li><span>Datos</span><strong>Demostrativos</strong></li>
+          </ul>
+        </aside>
+
+        <section class="panel" aria-labelledby="conversation-title">
+          <div class="panel-heading">
+            <div>
+              <h2 id="conversation-title">Conversación</h2>
+              <p>Los mensajes se guardan únicamente en este navegador.</p>
+            </div>
+            <a class="table-link" href="comparador.html">Ver comparación</a>
+          </div>
+          <ol class="message-list" id="message-list" aria-live="polite"></ol>
+          <form class="message-form" id="message-form" novalidate>
+            <div>
+              <label class="sr-only" for="message">Mensaje</label>
+              <textarea
+                id="message"
+                name="message"
+                maxlength="280"
+                placeholder="Escribe una consulta sobre la oferta…"
+                aria-describedby="message-error"
+              ></textarea>
+              <small
+                class="field-error"
+                id="message-error"
+                data-error-for="message"
+                aria-live="polite"
+              ></small>
+            </div>
+            <button class="button primary" type="submit">Enviar</button>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <p>ConectaNegocio · La conversación permanece asociada a la oferta.</p>
+        <div class="footer-links">
+          <a href="comparador.html">Comparador</a>
+          <a href="pedido.html">Crear pedido</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="global-toast" id="global-toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>
+

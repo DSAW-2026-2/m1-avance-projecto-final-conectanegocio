@@ -1,0 +1,56 @@
+:root {
+  color-scheme: light;
+  --navy: #1e222f;
+  --navy-soft: #2a3042;
+  --cream: #f5f2e9;
+  --surface: #fffef9;
+  --surface-soft: #faf7ef;
+  --terracotta: #c05a2b;
+  --terracotta-dark: #98431e;
+  --terracotta-soft: #f8e5dc;
+  --ink: #25282f;
+  --muted: #686b73;
+  --line: #ded9ce;
+  --success: #2f7d5a;
+  --success-soft: #e3f1e9;
+  --warning: #936016;
+  --warning-soft: #fbefd4;
+  --danger: #b33c34;
+  --danger-soft: #fae5e3;
+  --blue: #426684;
+  --blue-soft: #e3ebf5;
+  --shadow: 0 0.75rem 2.5rem rgb(30 34 47 / 9%);
+  --shadow-large: 0 1.5rem 4rem rgb(30 34 47 / 16%);
+  --radius-small: 0.55rem;
+  --radius: 1rem;
+  --radius-large: 1.5rem;
+  --container: 74rem;
+  --font-sans: inter, ui-sans-serif, -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
+  --font-display: georgia, "Times New Roman", serif;
+  --space-xs: 0.25rem;
+  --space-small: 0.5rem;
+  --space-medium: 1rem;
+  --space-large: 2rem;
+  --space-xl: 4rem;
+  --transition-fast: 160ms ease;
+  --z-header: 30;
+  --z-toast: 80;
+  --z-dialog: 100;
+}
+
+.dark {
+  color-scheme: dark;
+  --cream: #12151c;
+  --surface: #1e222f;
+  --surface-soft: #242a39;
+  --ink: #f5f2e9;
+  --muted: #b7bbc6;
+  --line: #383e4d;
+  --terracotta-soft: #47281d;
+  --success-soft: #193c2d;
+  --warning-soft: #44361c;
+  --danger-soft: #492522;
+  --blue-soft: #22354a;
+  --shadow: 0 0.75rem 2.5rem rgb(0 0 0 / 25%);
+  --shadow-large: 0 1.5rem 4rem rgb(0 0 0 / 35%);
+}

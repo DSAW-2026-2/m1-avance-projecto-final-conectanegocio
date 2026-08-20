@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seguimiento compartido de pedidos en ConectaNegocio.">
+    <title>Seguimiento | ConectaNegocio</title>
+    <script src="../js/theme-init.js"></script>
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+    <link rel="stylesheet" href="../css/pages/seguimiento.css">
+  </head>
+  <body data-page="seguimiento">
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="site-header">
+      <div class="container header-layout">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark" aria-hidden="true">CN</span>
+          <span class="brand-name">Conecta<strong>Negocio</strong></span>
+        </a>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+          <ul class="nav-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="comerciante.html">Comerciante</a></li>
+            <li><a href="ofertas.html">Ofertas</a></li>
+            <li><a href="seguimiento.html" aria-current="page">Seguimiento</a></li>
+            <li><a href="proveedor.html">Proveedor</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-button" id="theme-toggle" type="button" aria-pressed="false">
+            <b aria-hidden="true">◐</b>
+            <span>Modo oscuro</span>
+          </button>
+          <button
+            class="icon-button mobile-nav-toggle"
+            id="mobile-nav-toggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="site-nav"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido-principal">
+      <section class="page-hero">
+        <div class="container">
+          <ol class="breadcrumbs">
+            <li><a href="comerciante.html">Panel</a></li>
+            <li>Seguimiento</li>
+          </ol>
+          <div class="page-title-row">
+            <div>
+              <p class="eyebrow">Paso 5 de 5</p>
+              <h1>Seguimiento</h1>
+              <p>Comerciante y proveedor comparten el estado y el historial del pedido.</p>
+            </div>
+            <a class="button secondary" href="proveedor.html">Cambiar al rol proveedor</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="container main-content">
+        <section class="empty-state" id="tracking-empty" hidden>
+          <span class="empty-icon" aria-hidden="true">↗</span>
+          <h2>Todavía no hay un pedido</h2>
+          <p>Crea uno desde una oferta para comenzar el seguimiento.</p>
+          <a class="button primary" href="ofertas.html">Buscar ofertas</a>
+        </section>
+
+        <div class="two-column-layout" id="tracking-content">
+          <section class="panel" aria-labelledby="tracking-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Pedido <span id="tracking-id">—</span></p>
+                <h2 id="tracking-title">Historial compartido</h2>
+              </div>
+              <span class="status large" id="tracking-status">—</span>
+            </div>
+            <ol class="timeline" id="tracking-timeline"></ol>
+          </section>
+
+          <div class="tracking-details">
+            <section class="panel" aria-labelledby="detail-title">
+              <div class="panel-heading">
+                <div>
+                  <h2 id="detail-title">Detalle del pedido</h2>
+                  <p>Condiciones conservadas desde la oferta.</p>
+                </div>
+              </div>
+              <ul class="summary-list">
+                <li><span>Proveedor</span><strong id="tracking-provider">—</strong></li>
+                <li><span>Producto</span><strong id="tracking-product">—</strong></li>
+                <li><span>Solicitado</span><strong id="tracking-quantity">—</strong></li>
+                <li><span>Fecha requerida</span><strong id="tracking-date">—</strong></li>
+              </ul>
+            </section>
+
+            <section class="panel" aria-labelledby="receive-title">
+              <div class="panel-heading">
+                <div>
+                  <h2 id="receive-title">Confirmar recepción</h2>
+                  <p>Permite registrar una entrega total o parcial.</p>
+                </div>
+              </div>
+              <form id="receive-form" novalidate>
+                <div class="form-field">
+                  <label for="received">Unidades recibidas</label>
+                  <input
+                    id="received"
+                    name="received"
+                    type="number"
+                    min="1"
+                    aria-describedby="receive-hint received-error"
+                  >
+                  <small class="field-hint" id="receive-hint">
+                    Disponible cuando el proveedor registre la entrega.
+                  </small>
+                  <small
+                    class="field-error"
+                    id="received-error"
+                    data-error-for="received"
+                    aria-live="polite"
+                  ></small>
+                </div>
+                <button class="button primary" type="submit">Registrar recepción</button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <p>ConectaNegocio · Trazabilidad desde la solicitud hasta la recepción.</p>
+        <div class="footer-links">
+          <button class="button ghost" type="button" data-reset-demo>Restaurar demostración</button>
+          <a href="proveedor.html">Vista proveedor</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="global-toast" id="global-toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>
+
