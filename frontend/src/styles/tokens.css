@@ -1,0 +1,15 @@
+:root {
+  color-scheme: light;
+  --navy: #1e222f;
+  --cream: #f5f2e9;
+  --surface: #fffef9;
+  --terracotta: #98431e;
+  --ink: #25282f;
+  --muted: #565b65;
+  --line: #ded9ce;
+  --shadow: 0 0.75rem 2.5rem rgb(30 34 47 / 9%);
+  --radius: 1rem;
+  --container: 74rem;
+  --font-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+}
