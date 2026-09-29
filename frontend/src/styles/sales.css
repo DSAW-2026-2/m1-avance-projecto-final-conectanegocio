@@ -1,0 +1,12 @@
+.store-sales-page { display: grid; gap: 1rem; }
+.store-sales-page > h1,
+.store-sales-page > p { margin-block: 0; overflow-wrap: anywhere; }
+.store-sales-page h2 { margin-bottom: 0.7rem; }
+.sale-picker-form { display: grid; gap: 0.8rem; max-width: 36rem; }
+.sale-picker-form button { justify-self: start; }
+.store-sales-page .shopping-line h3 { margin-top: 0; font-size: 1.3rem; overflow-wrap: anywhere; }
+.store-sales-page .shopping-line-actions input { width: 100%; min-width: 0; }
+.sale-history { margin-top: 1.5rem; min-width: 0; }
+.sale-history .order-list { margin-top: 1rem; }
+.sale-history .order-card h3,
+.sale-history .order-card li { overflow-wrap: anywhere; }
