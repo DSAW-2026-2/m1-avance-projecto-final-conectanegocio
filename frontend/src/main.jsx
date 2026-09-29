@@ -11,6 +11,7 @@ import './styles/components.css';
 import './styles/catalog.css';
 import './styles/shopping.css';
 import './styles/sales.css';
+import './styles/business.css';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -8,8 +8,7 @@ export default function HomePage() {
         <p className="eyebrow">Prototipo frontend · En construcción</p>
         <h1 id="home-title">{productName}</h1>
         <p className="hero-copy">
-          Explora productos y precios de demostración por tienda.
-          Los clientes pueden comprar y el personal autorizado puede registrar ventas simuladas en esta sesión.
+          Compara ofertas, abastece tu tienda y conecta compras, ventas e inventario con datos de demostración.
         </p>
         <div className="hero-actions">
           <Link className="button-link" to="/products">Explorar el catálogo</Link>
@@ -20,8 +19,7 @@ export default function HomePage() {
         <p className="eyebrow">Esta entrega</p>
         <h2 id="foundation-title">Funciones disponibles en esta sesión</h2>
         <p>
-          El acceso, el catálogo, las compras de clientes y las ventas de tienda son demostraciones locales.
-          Las demás funciones comerciales se incorporarán en cambios posteriores.
+          El acceso, el catálogo, los pedidos, las ventas, el inventario, las facturas y los reportes son simulaciones locales.
         </p>
       </section>
     </div>

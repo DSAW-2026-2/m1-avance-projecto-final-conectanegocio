@@ -7,9 +7,8 @@ export default function DashboardPage() {
   const { currentUser, persistenceAvailable } = useAuth();
   const organization = stores.find(({ id }) => id === currentUser.storeId) ??
     distributors.find(({ id }) => id === currentUser.distributorId);
-  const shoppingLinks = visibleDestinations(currentUser).filter(({ path }) =>
-    ['/products', '/client/cart', '/client/orders'].includes(path));
-  const salesLink = visibleDestinations(currentUser).find(({ path }) => path === '/store/sales');
+  const actionLinks = visibleDestinations(currentUser).filter(({ path }) =>
+    !['/', '/products', '/login', '/register', '/client/dashboard', '/store/dashboard', '/distributor/dashboard'].includes(path));
   return (
     <div className="container account-page">
       <section className="account-card" aria-labelledby="dashboard-title">
@@ -21,21 +20,12 @@ export default function DashboardPage() {
           {organization && <div><dt>Organización</dt><dd>{organization.name}</dd></div>}
         </dl>
         <p>Esta sesión y los permisos son una simulación del frontend, no seguridad real.</p>
-        {shoppingLinks.length > 1 ? (
-          <div className="dashboard-shopping">
-            <h2>Compras de demostración</h2>
-            <p>Explora una tienda, compra sin cargo real y consulta pedidos de esta sesión.</p>
-            <div className="shopping-links">{shoppingLinks.map(({ path, navigation }) => (
-              <Link key={path} className="text-link" to={path}>{navigation}</Link>
-            ))}</div>
-          </div>
-        ) : salesLink ? (
-          <div className="dashboard-shopping">
-            <h2>Ventas de demostración</h2>
-            <p>Registra ventas simuladas de tu tienda y consulta su historial de esta sesión.</p>
-            <Link className="text-link" to={salesLink.path}>{salesLink.navigation}</Link>
-          </div>
-        ) : <p>Las funciones comerciales de este rol se incorporarán en cambios posteriores.</p>}
+        <div className="dashboard-shopping"><h2>Funciones de tu rol</h2>
+          <p>Estas acciones producen cambios visibles dentro de esta sesión.</p>
+          {actionLinks.length ? <div className="shopping-links">{actionLinks.map(({ path, navigation }) => (
+            <Link key={path} className="text-link" to={path}>{navigation}</Link>
+          ))}</div> : <p>No hay acciones disponibles todavía.</p>}
+        </div>
         {!persistenceAvailable && <p role="status">El almacenamiento no está disponible; tu sesión podría no sobrevivir una recarga.</p>}
       </section>
     </div>

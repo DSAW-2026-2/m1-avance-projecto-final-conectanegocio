@@ -1,0 +1,36 @@
+.supplier-grid,
+.inventory-grid,
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1rem; }
+.supplier-grid { margin-top: 1.25rem; }
+.supplier-grid .product-card { min-height: 12rem; }
+.supplier-grid h2 { margin-block: 0.4rem; color: var(--navy); }
+.purchase-form,
+.invoice-form,
+.chat-form { display: grid; gap: 0.75rem; max-width: 34rem; }
+.purchase-form button,
+.invoice-form button,
+.chat-form button,
+.order-card button { width: fit-content; padding: 0.7rem 1rem; border: 0; border-radius: 0.45rem; background: var(--terracotta); color: white; font: inherit; font-weight: 700; cursor: pointer; }
+.purchase-form button:hover,
+.invoice-form button:hover,
+.chat-form button:hover,
+.order-card button:hover { background: var(--navy); }
+.metric-card { padding: 1.2rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+.metric-card p { margin: 0; color: var(--muted); }
+.metric-card strong { display: block; margin-top: 0.3rem; color: var(--navy); font-size: 1.55rem; }
+.inventory-grid { padding: 0; list-style: none; margin-top: 1.5rem; }
+.inventory-grid h2 { margin: 0; font-size: 1.15rem; }
+.inventory-grid p { margin: 0.4rem 0 0; color: var(--muted); }
+.chat-window { display: grid; gap: 1rem; margin-top: 1.5rem; padding: clamp(1rem, 3vw, 1.6rem); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+.chat-window h2 { margin: 0; }
+.message-list { display: grid; gap: 0.7rem; max-height: 25rem; overflow: auto; }
+.message { max-width: 42rem; margin: 0; padding: 0.75rem; border-radius: 0.6rem; background: var(--cream); }
+.message--mine { justify-self: end; background: #e8f4e9; }
+.message strong { display: block; margin-bottom: 0.2rem; }
+.chat-form { grid-template-columns: minmax(0, 1fr) auto; align-items: end; max-width: none; }
+.chat-form label { grid-column: 1 / -1; font-weight: 700; }
+.chat-form input,
+.invoice-form input,
+.purchase-form input,
+.catalog-toolbar select { min-width: 0; padding: 0.7rem 0.8rem; border: 1px solid var(--muted); border-radius: 0.45rem; background: white; color: var(--ink); font: inherit; }
+@media (max-width: 42rem) { .chat-form { grid-template-columns: minmax(0, 1fr); } }

@@ -104,11 +104,11 @@ El historial de Git complementa esta distribución y registra los aportes técni
 
 ## Tecnologías
 
-- HTML5 semántico.
+- React, JSX, React Router y Vite.
 - CSS responsive organizado por capas, con Grid como sistema principal y Flexbox solo en controles unidimensionales.
-- JavaScript moderno sin frameworks.
-- `localStorage` para conservar el estado demostrativo.
-- Web Crypto para evitar guardar las contraseñas demostrativas en texto plano.
+- JavaScript moderno, `useState`, Context y un custom hook de debounce.
+- Mock data en memoria para productos, ofertas, inventario, pedidos, ventas, facturas y mensajes.
+- `localStorage` únicamente para las cuentas y la sesión demo.
 - Figma para wireframes y diseño.
 - GitHub y GitHub Pages para colaboración y publicación.
 
@@ -116,28 +116,42 @@ El historial de Git complementa esta distribución y registra los aportes técni
 
 ```text
 .
-├── index.html
 ├── README.md
-├── pages/        # Pantallas internas del prototipo
-├── css/          # Tokens, base, layouts, componentes y estilos por página
-│   └── pages/
-├── js/           # Lógica, validación, tema y registro demostrativo
-└── docs/         # Documentación secundaria y registro de uso de IA
+├── frontend/
+│   ├── src/
+│   │   ├── components/  # Componentes pequeños y reutilizables
+│   │   ├── context/     # AuthContext y DataContext
+│   │   ├── data/        # Identidades y mock data
+│   │   ├── pages/       # Vistas por ruta
+│   │   ├── routes/      # Router y políticas de acceso
+│   │   ├── utils/       # Reglas de negocio puras
+│   │   └── styles/      # CSS del frontend React
+│   ├── tests/
+│   └── package.json
+├── openspec/       # Especificaciones funcionales y técnicas
+└── docs/           # Documentación y registro de asistencia
 ```
 
-`index.html` y `README.md` permanecen en la raíz. Las rutas son relativas para conservar la compatibilidad con GitHub Pages.
+La aplicación activa está en `frontend/`. El frontend usa `HashRouter` para conservar las rutas al publicarse como sitio estático en GitHub Pages.
 
-## Registro demostrativo
+## Funciones demostrativas
 
-La landing page incluye un registro local de comerciantes y distribuidores. Los datos se guardan únicamente en la clave `cn-registered-users` de `localStorage`; no se crea una cuenta ni una sesión en un servidor. La preferencia de autenticación de dos factores es simulada y no envía códigos reales.
+El frontend implementa autenticación por roles, catálogo por tienda, comparación de distribuidores, pedidos de abastecimiento, ventas, inventario, checkout, facturas simuladas, reportes, recomendaciones y chat local.
 
-La contraseña no se almacena directamente: el navegador genera un salt aleatorio y conserva un hash SHA-256 mediante Web Crypto. Esta medida solo evita texto plano dentro del prototipo y no equivale a un sistema de autenticación seguro. **No utilices una contraseña real.**
-
-Mientras no exista correo o nombre de usuario, los duplicados se identifican provisionalmente mediante la combinación normalizada de nombre completo, tipo de usuario y cargo. Dos personas reales podrían compartir esos datos, por lo que una versión de producción necesitaría un identificador único verificado.
+Todo es demostrativo: no hay servidor, cuentas reales, pagos reales, OCR, IA ni comunicación entre navegadores. Las cuentas y la sesión se guardan únicamente en las claves `cn-react-auth-v1:registeredUsers` y `cn-react-auth-v1:currentUserId` de `localStorage`. **No utilices credenciales reales.**
 
 ## Ejecutar localmente
 
-Los módulos de JavaScript y Web Crypto necesitan un servidor HTTP local. Desde la carpeta del proyecto se puede usar cualquier servidor estático, por ejemplo la extensión Live Server de VS Code. Luego se abre `index.html` desde la dirección que muestre el servidor.
+Desde `frontend/`:
+
+```sh
+npm install
+npm run dev
+npm run build
+node --test tests/*.test.mjs
+```
+
+El build verifica automáticamente que ningún componente JSX supere 80 líneas.
 
 ## Datos y privacidad
 

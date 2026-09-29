@@ -10,6 +10,15 @@ import DashboardPage from '../pages/DashboardPage.jsx';
 import CartPage from '../pages/CartPage.jsx';
 import OrdersPage from '../pages/OrdersPage.jsx';
 import StoreSalesPage from '../pages/StoreSalesPage.jsx';
+import SuppliersPage from '../pages/SuppliersPage.jsx';
+import SupplierDetailPage from '../pages/SupplierDetailPage.jsx';
+import PurchaseOrdersPage from '../pages/PurchaseOrdersPage.jsx';
+import DistributorOrdersPage from '../pages/DistributorOrdersPage.jsx';
+import StoreInventoryPage from '../pages/StoreInventoryPage.jsx';
+import ReportsPage from '../pages/ReportsPage.jsx';
+import InvoicesPage from '../pages/InvoicesPage.jsx';
+import ChatPage from '../pages/ChatPage.jsx';
+import DistributorInventoryPage from '../pages/DistributorInventoryPage.jsx';
 import { destinations } from './destinations.js';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import AccountEntryRoute from './AccountEntryRoute.jsx';
@@ -24,6 +33,15 @@ const pages = {
   cart: CartPage,
   orders: OrdersPage,
   storeSales: StoreSalesPage,
+  suppliers: SuppliersPage,
+  supplierDetail: SupplierDetailPage,
+  purchaseOrders: PurchaseOrdersPage,
+  distributorOrders: DistributorOrdersPage,
+  storeInventory: StoreInventoryPage,
+  reports: ReportsPage,
+  invoices: InvoicesPage,
+  chat: ChatPage,
+  distributorInventory: DistributorInventoryPage,
 };
 
 export default function AppRoutes() {
