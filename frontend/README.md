@@ -12,7 +12,7 @@ node --test tests/*.test.mjs
 
 `dev` serves the local React app. `build` creates static files in `dist/`; `preview` serves that build locally. The historical M1 site remains at the repository root.
 
-The app uses `HashRouter`. Public routes include `/`, `/products`, `/products/:productId`, `/login`, and `/register`. Client routes cover dashboard, catalog, cart, checkout, and orders. Store routes cover sales, inventory, supplier comparison, supplier details, purchase orders, invoices, reports, recommendations, and chat. Distributor routes cover dashboard, catalogue/inventory, incoming orders, status updates, and chat. Vite uses relative asset paths so the static build can be served beneath a URL prefix.
+The app uses `HashRouter`. Public routes include `/`, `/products`, `/products/:productId`, `/login`, and `/register`. Client routes cover dashboard, catalog, cart, checkout, and orders. Store routes cover sales, inventory, supplier comparison, supplier details, purchase orders, invoices, reports, recommendations, and chat. Distributor routes cover dashboard, catalogue/inventory, incoming orders, status updates, and chat. Vite uses relative asset paths so the static build can be served beneath a URL prefix. The repository workflow deploys `dist/` to GitHub Pages after tests and build pass on `main`.
 
 All demo accounts use password `Demo2026!`:
 

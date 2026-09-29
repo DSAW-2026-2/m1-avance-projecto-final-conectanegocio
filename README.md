@@ -112,6 +112,8 @@ El historial de Git complementa esta distribución y registra los aportes técni
 - Figma para wireframes y diseño.
 - GitHub y GitHub Pages para colaboración y publicación.
 
+Cada push a `main` ejecuta las pruebas, construye `frontend/dist` y publica el frontend mediante GitHub Actions.
+
 ## Estructura del proyecto
 
 ```text
