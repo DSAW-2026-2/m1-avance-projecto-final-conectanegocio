@@ -1,0 +1,35 @@
+.shopping-page { padding-block: clamp(2rem, 5vw, 4rem); }
+.shopping-page > h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+.shopping-page > p { max-width: 48rem; }
+.shopping-panel,
+.shopping-line { min-width: 0; padding: clamp(1rem, 3vw, 1.6rem); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+.shopping-lines { display: grid; gap: 1rem; padding: 0; list-style: none; }
+.shopping-line { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 18rem); gap: 1rem; }
+.shopping-line h2 { margin-top: 0; font-size: 1.4rem; overflow-wrap: anywhere; }
+.shopping-line p { margin-block: 0.4rem; }
+.shopping-line-actions,
+.shopping-line-actions form { display: grid; align-content: start; gap: 0.5rem; }
+.shopping-line-actions label { font-weight: 700; }
+.shopping-line-actions input,
+.shopping-checkout select { width: 100%; min-width: 0; padding: 0.7rem 0.8rem; border: 1px solid var(--muted); border-radius: 0.45rem; background: white; color: var(--ink); font: inherit; }
+.shopping-line-actions input:focus-visible,
+.shopping-checkout select:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 3px; }
+.shopping-page button,
+.shopping-action button { width: fit-content; padding: 0.7rem 1rem; border: 0; border-radius: 0.45rem; background: var(--terracotta); color: white; font: inherit; font-weight: 700; cursor: pointer; }
+.shopping-page button:hover,
+.shopping-action button:hover { background: var(--navy); }
+.shopping-page button:disabled { opacity: 0.55; cursor: not-allowed; }
+.shopping-total { display: grid; gap: 0.7rem; justify-items: start; }
+.shopping-total p { margin: 0; font-size: 1.25rem; }
+.shopping-checkout { margin-top: 1rem; }
+.shopping-checkout form { display: grid; gap: 1rem; max-width: 25rem; }
+.shopping-action { display: grid; gap: 0.5rem; margin-top: 1rem; }
+.shopping-action p { margin: 0; }
+.shopping-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+.dashboard-shopping { margin-block: 1.5rem; }
+.order-list { display: grid; gap: 1rem; padding: 0; list-style: none; }
+.order-card h2 { margin-top: 0; overflow-wrap: anywhere; }
+.order-card p { overflow-wrap: anywhere; }
+.order-items { padding-left: 1.25rem; }
+.order-items li { overflow-wrap: anywhere; }
+@media (max-width: 42rem) { .shopping-line { grid-template-columns: minmax(0, 1fr); } }

@@ -1,0 +1,25 @@
+.compare-grid {
+  margin-bottom: var(--space-medium);
+}
+
+.compare-card.featured {
+  border-top: 0.25rem solid var(--terracotta);
+}
+
+.compare-card h2 {
+  margin-bottom: 0.3rem;
+  font-size: 1.55rem;
+}
+
+.compare-card > p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.compare-price {
+  display: block;
+  margin-block: 1.4rem 0.25rem;
+  color: var(--terracotta-dark);
+  font-family: var(--font-display);
+  font-size: 2rem;
+}

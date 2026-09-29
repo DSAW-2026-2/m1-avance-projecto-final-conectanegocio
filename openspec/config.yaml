@@ -1,0 +1,14 @@
+schema: spec-driven
+context: |
+  ConectaNegocio is a functional React/Vite/JavaScript/CSS frontend prototype with mock data.
+  Read docs/project-definition.md for scope, roles, permissions, flows, routes, and data contracts.
+  Read docs/architecture-principles.md for stack decisions and invariants INV-01–INV-10.
+  Preserve the existing M1 static prototype. No backend or real external integrations.
+  Local development only; no commits, pushes, remote changes, PRs, or deployment without explicit request.
+rules:
+  proposal:
+    - State scope, non-goals, affected roles/permissions, and relationship to the existing M1 prototype.
+  design:
+    - Explain significant architecture decisions and relevant rejected alternatives.
+  tasks:
+    - Include coherent state transitions, route authorization, and rubric checks where applicable.

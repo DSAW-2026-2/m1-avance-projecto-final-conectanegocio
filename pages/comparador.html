@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comparación contextual de ofertas en ConectaNegocio.">
+    <title>Comparador | ConectaNegocio</title>
+    <script src="../js/theme-init.js"></script>
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+    <link rel="stylesheet" href="../css/pages/comparador.css">
+  </head>
+  <body data-page="comparador">
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="site-header">
+      <div class="container header-layout">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark" aria-hidden="true">CN</span>
+          <span class="brand-name">Conecta<strong>Negocio</strong></span>
+        </a>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+          <ul class="nav-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="comerciante.html">Comerciante</a></li>
+            <li><a href="ofertas.html" aria-current="page">Ofertas</a></li>
+            <li><a href="seguimiento.html">Seguimiento</a></li>
+            <li><a href="proveedor.html">Proveedor</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-button" id="theme-toggle" type="button" aria-pressed="false">
+            <b aria-hidden="true">◐</b>
+            <span>Modo oscuro</span>
+          </button>
+          <button
+            class="icon-button mobile-nav-toggle"
+            id="mobile-nav-toggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="site-nav"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido-principal">
+      <section class="page-hero">
+        <div class="container">
+          <ol class="breadcrumbs">
+            <li><a href="comerciante.html">Panel</a></li>
+            <li><a href="ofertas.html">Ofertas</a></li>
+            <li>Comparador</li>
+          </ol>
+          <div class="page-title-row">
+            <div>
+              <p class="eyebrow">Paso 2 de 5</p>
+              <h1>Comparador</h1>
+              <p>
+                Revisa las condiciones alineadas. La plataforma presenta la información; la decisión
+                sigue siendo del comerciante.
+              </p>
+            </div>
+            <button class="button ghost" id="clear-comparison" type="button">
+              Vaciar selección
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="container main-content">
+        <div id="comparison-content">
+          <section
+            class="compare-grid"
+            id="comparison-grid"
+            aria-label="Ofertas seleccionadas"
+          ></section>
+
+          <section class="panel" aria-labelledby="matrix-title">
+            <div class="panel-heading">
+              <div>
+                <h2 id="matrix-title">Atributos comparables</h2>
+                <p>Mismos criterios, proveedores distintos.</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr id="comparison-table-head"></tr>
+                </thead>
+                <tbody id="comparison-table-body"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <section class="empty-state" id="comparison-empty" hidden>
+          <span class="empty-icon" aria-hidden="true">⇄</span>
+          <h2>Faltan ofertas para comparar</h2>
+          <p>Selecciona al menos dos opciones desde el catálogo.</p>
+          <a class="button primary" href="ofertas.html">Seleccionar ofertas</a>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <p>ConectaNegocio · Paso siguiente: conversar o crear el pedido.</p>
+        <div class="footer-links">
+          <a href="ofertas.html">Cambiar selección</a>
+          <a href="chat.html">Chat contextual</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="global-toast" id="global-toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>
+

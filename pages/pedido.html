@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creación demostrativa de pedidos en ConectaNegocio.">
+    <title>Crear pedido | ConectaNegocio</title>
+    <script src="../js/theme-init.js"></script>
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+    <link rel="stylesheet" href="../css/pages/pedido.css">
+  </head>
+  <body data-page="pedido">
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="site-header">
+      <div class="container header-layout">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark" aria-hidden="true">CN</span>
+          <span class="brand-name">Conecta<strong>Negocio</strong></span>
+        </a>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+          <ul class="nav-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="comerciante.html">Comerciante</a></li>
+            <li><a href="ofertas.html" aria-current="page">Ofertas</a></li>
+            <li><a href="seguimiento.html">Seguimiento</a></li>
+            <li><a href="proveedor.html">Proveedor</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button class="theme-button" id="theme-toggle" type="button" aria-pressed="false">
+            <b aria-hidden="true">◐</b>
+            <span>Modo oscuro</span>
+          </button>
+          <button
+            class="icon-button mobile-nav-toggle"
+            id="mobile-nav-toggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="site-nav"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido-principal">
+      <section class="page-hero">
+        <div class="container">
+          <ol class="breadcrumbs">
+            <li><a href="comparador.html">Comparador</a></li>
+            <li><a href="chat.html">Chat</a></li>
+            <li>Pedido</li>
+          </ol>
+          <div class="page-title-row">
+            <div>
+              <p class="eyebrow">Paso 4 de 5</p>
+              <h1>Crear pedido</h1>
+              <p>Confirma la oferta, la cantidad y las condiciones de entrega acordadas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container main-content two-column-layout">
+        <section class="panel" aria-labelledby="order-form-title">
+          <div class="panel-heading">
+            <div>
+              <h2 id="order-form-title">Datos del pedido</h2>
+              <p>Ningún dato se envía a un servidor.</p>
+            </div>
+          </div>
+
+          <form id="order-form" novalidate>
+            <div class="form-grid">
+              <div class="form-field full-field">
+                <label for="offerId">Oferta seleccionada</label>
+                <select id="offerId" name="offerId" aria-describedby="offerId-error"></select>
+                <small
+                  class="field-error"
+                  id="offerId-error"
+                  data-error-for="offerId"
+                  aria-live="polite"
+                ></small>
+              </div>
+
+              <div class="form-field">
+                <label for="quantity">Cantidad</label>
+                <input
+                  id="quantity"
+                  name="quantity"
+                  type="number"
+                  min="1"
+                  max="500"
+                  value="24"
+                  aria-describedby="quantity-error"
+                >
+                <small
+                  class="field-error"
+                  id="quantity-error"
+                  data-error-for="quantity"
+                  aria-live="polite"
+                ></small>
+              </div>
+
+              <div class="form-field">
+                <label for="deliveryDate">Fecha requerida</label>
+                <input
+                  id="deliveryDate"
+                  name="deliveryDate"
+                  type="date"
+                  aria-describedby="deliveryDate-error"
+                >
+                <small
+                  class="field-error"
+                  id="deliveryDate-error"
+                  data-error-for="deliveryDate"
+                  aria-live="polite"
+                ></small>
+              </div>
+
+              <div class="form-field full-field">
+                <label for="address">Dirección de entrega</label>
+                <input
+                  id="address"
+                  name="address"
+                  type="text"
+                  autocomplete="street-address"
+                  value="Carrera 9 # 12-34, Chía"
+                  aria-describedby="address-error"
+                >
+                <small
+                  class="field-error"
+                  id="address-error"
+                  data-error-for="address"
+                  aria-live="polite"
+                ></small>
+              </div>
+
+              <div class="form-field full-field">
+                <label for="email">Correo de contacto</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  value="carolina@papelerialasabana.co"
+                  aria-describedby="email-error"
+                >
+                <small
+                  class="field-error"
+                  id="email-error"
+                  data-error-for="email"
+                  aria-live="polite"
+                ></small>
+              </div>
+
+              <div class="form-field full-field">
+                <label for="notes">Observaciones <span>(opcional)</span></label>
+                <textarea id="notes" name="notes" maxlength="180">Entregar en el local antes de las 4 p. m.</textarea>
+              </div>
+
+              <div class="checkbox-field full-field">
+                <input
+                  id="terms"
+                  name="terms"
+                  type="checkbox"
+                  aria-describedby="terms-error"
+                >
+                <label for="terms">
+                  Entiendo que este pedido es una demostración y no genera una compra real.
+                </label>
+                <small
+                  class="field-error"
+                  id="terms-error"
+                  data-error-for="terms"
+                  aria-live="polite"
+                ></small>
+              </div>
+            </div>
+
+            <div class="button-row">
+              <button class="button primary" type="submit">Crear pedido ficticio</button>
+              <a class="button ghost" href="chat.html">Volver al chat</a>
+            </div>
+          </form>
+        </section>
+
+        <aside class="panel order-summary" aria-labelledby="summary-title">
+          <div class="panel-heading">
+            <div>
+              <h2 id="summary-title">Resumen</h2>
+              <p>Se actualiza con la cantidad.</p>
+            </div>
+          </div>
+          <ul class="summary-list">
+            <li><span>Proveedor</span><strong id="order-provider">—</strong></li>
+            <li><span>Precio unitario</span><strong id="order-unit-price">—</strong></li>
+            <li><span>Total estimado</span><strong id="order-total">—</strong></li>
+            <li><span>Siguiente paso</span><strong>Confirmación del proveedor</strong></li>
+          </ul>
+          <div class="demo-notice panel">
+            <p><strong>Importante:</strong> valores y condiciones ficticios para demostrar el flujo.</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <p>ConectaNegocio · El pedido conserva la oferta y el contexto acordado.</p>
+        <div class="footer-links">
+          <a href="chat.html">Chat</a>
+          <a href="seguimiento.html">Seguimiento</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="global-toast" id="global-toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>
+

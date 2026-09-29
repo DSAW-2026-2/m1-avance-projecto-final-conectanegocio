@@ -1,0 +1,56 @@
+# Design
+
+## Context
+
+See `proposal.md` and the three delta specs. The current React/Vite/JavaScript app already uses `HashRouter`, central `destinations`/`ProtectedRoute`, `AuthContext`, and a small `DataContext` holding in-memory `selectedStoreId`. Catalog helpers join `Product` identity to exactly one selected-store `StoreInventoryItem` for sale price and stock. There is no mutable inventory, cart, order, sale, or payment state yet. `DataProvider` is nested inside `AuthProvider`, so business operations can consult the current mock account. The historical M1 static files must remain untouched.
+
+## Goals / Non-Goals
+
+**Goals:** One explainable, testable session-state transition for customer purchase; role-scoped shopping UI; historical purchase snapshots; no extra context/package. Preserve the public catalog's selected-store behavior and central route policy.
+
+**Non-Goals:** Genuine payment/security guarantees, persistent commercial data, backoffice sale screens, order-status workflows, split-payment UI, or new backend/data infrastructure.
+
+## Decisions
+
+### One business owner and store-bound cart
+
+Extend the existing `DataContext`, not a new `CartContext`. Keep one in-memory business snapshot with `selectedStoreId`, mutable `storeInventory`, `cart`, `orders`, and `sales`; static products/stores stay in existing mock files. `AuthContext` continues to own only user/session data. Cart shape: `{ customerId, storeId, items: [{ productId, quantity }] }`, with an empty cart represented consistently (no owner/store and no lines). No product object, sale price, or total is duplicated in cart. Only `client` operations for the current user may touch it. Cart is not persisted; logout explicitly clears it, and another identity never reads or acts on a previous owner's cart. Full reload resets commercial state, including orders and stock, as permitted by the constitution.
+
+The existing selected store remains the public browse context, never inferred from account `storeId`. The cart's `storeId` locks the retail offer context for a nonempty cart. `selectStore` becomes a guarded DataContext operation: if the active nonempty cart belongs to the current client, a different valid store (or clearing selection) is rejected, existing selection/cart are preserved, and an accessible message tells the client to empty the cart first. Emptying is explicit through item removals. With no nonempty cart, an invalid store selection retains the catalog's existing no-selection behavior and cannot expose commercial data. Catalog and detail selectors surface rejection; they must not show a different store's offers while the cart remains bound elsewhere. This is simpler and less surprising than silent cart clearing, mixed-store carts, or a modal confirmation workflow. Store-changing UI keeps its search/category behavior coherent on accepted changes only.
+
+### Source prices, derived totals, and snapshots
+
+Read current retail price and availability only from the unique `(storeId, productId)` inventory entry, reusing the catalog's ID-based lookup semantics. `SupplierOffer.price` and `lastPurchasePrice` never enter customer totals. Compute cart line subtotal and total from current `salePrice × quantity` during render and in the checkout transition; do not maintain independent total state. If price changes before checkout, the rendered cart and final validation use the new price. On success, order and sale line items snapshot `{ productId, quantity, unitPrice }` at checkout time; historical order total derives from these snapshots, while the sale records the same calculated numeric COP total. This deliberate historical price copy is not redundant live cart state. Reject missing/duplicate inventory entries, invalid nonnegative prices, and invalid stock rather than guessing a price. Quantity is a positive integer and cannot exceed current stock.
+
+### Central checkout as a pure state transition
+
+Implement `checkoutCustomerOrder(input)` as the only customer operation that changes orders, sales, payments, inventory, and cart. A pure helper receives the latest business snapshot plus current user and payment input, validates all preconditions, and returns either an error outcome with unchanged business fields or a complete next snapshot. Preconditions include `client` identity matching cart owner, valid selected/cart store agreement, nonempty unique cart lines, resolvable products and exactly one matching store inventory entry per line, positive integer quantities within current stock, finite nonnegative store sale prices, positive finite derived total, supported payment method, and any supplied payment amount equaling that total. The simple form selects one `cash`/`card`/`nequi` method; the operation constructs `payments: [{ method, amount: total }]`. The array and exact-sum invariant leave room for a later split-payment UI without implementing one now. No external charge occurs.
+
+Successful transition creates collision-free stable string IDs in the current session, an order with `orderType: 'customer'`, `status: 'pending'`, `customerId`, `storeId`, `createdBy`, `createdAt`, and snapshot items; and a sale with `orderId` referring to that order, `storeId`, `createdBy`, `date`, identical snapshot items, payments, and total. `createdBy` is the purchasing client for this self-checkout, not a fictional cashier. Only purchased inventory rows decrement. The cart empties in the same next snapshot. Future sales/reports can consume the common sale and inventory collections; later customer-order status workflows can extend the order without rewriting the purchase linkage. The order's total is derived from saved line snapshots, not current inventory price.
+
+Use a single functional state update (`setBusinessState(previous => transition(previous, input, user))` or a small equivalent) so validation and all business changes use the latest snapshot and commit together. The transition is pure: no random ID generation, time reads, navigation, messages, or storage writes inside the updater; provide a per-submit ISO timestamp and deterministic collision-safe ID candidates as inputs or derive IDs purely from previous IDs. React may re-run an updater, so purity matters. Store checkout outcome/feedback in the same state update as an event result, distinct from business records; failed validation may change only this feedback. The cart remains intact on failure. Two rapid submissions queue against successive snapshots: the first success empties the cart, and the second fails its empty-cart precondition, so it cannot create a second sale. Disable the submit control while a result is being rendered and show an in-page success state or error; no effect-driven redirect is needed. Direct operations recheck current user and store regardless of button visibility. This is simpler than several independent `useState` setters, imperative rollback, or a new reducer/state library.
+
+### Routes, history, and presentation
+
+Add only `/client/cart` and `/client/orders` to the existing central `destinations` with `allowedRoles: ['client']`; `AppRoutes` and navigation derive from that same definition. Reuse its permission helper for the client-only action on the public detail, while `ProtectedRoute` independently enforces direct URL access. The client dashboard offers links to catalog, cart, and own orders; nonclient dashboard content remains identity-only. Checkout is a section of `/client/cart`, not an extra undocumented route. The detail page delegates add-to-cart controls to a small focused component; signed-out/nonclient users can still browse public data. No purchase action appears on no-store, unknown, not-offered, or out-of-stock states.
+
+History is a filtered view `orders.filter(order => order.orderType === 'customer' && order.customerId === currentUser.id)`, never all orders with CSS-hidden rows. Show store name, snapshot items/amount, status, and mock payment summary by joining the matching sale on `orderId` within the same client-scoped result; no customer status editing. A missing sale/link is shown as inconsistent mock data rather than another customer's details. The operation also checks ownership and role, but this is a prototype client-side access boundary, not real security. The dashboard must stop claiming *all* commercial capabilities are future work once shopping exists.
+
+Keep form selection and validation presentation local to the page; global business outcome is event feedback, not a derived total. Split cart lines, checkout form/summary, history list/item, and detail action into focused components, each at most 80 lines. Reuse existing CSS tokens, shell, form styles, skip link/focus patterns; add a small shopping stylesheet with 320-pixel stacking and no horizontal overflow. Use native labeled quantity and payment controls, meaningful errors/status, keyboard actions, and honest “demo/no real charge/session-only” wording. No unnecessary `useEffect` or direct DOM manipulation.
+
+### Alternatives considered
+
+A separate cart context duplicates DataContext ownership of inventory/store and complicates atomic checkout. Local cart page state is lost on navigation. `localStorage` for cart/orders/sales would exceed its approved account/session use and imply durability the prototype does not promise. Persisting cart unit prices makes totals stale; using supplier prices is a wrong business relationship. Multiple independent setters with rollback can expose partial updates. `useReducer` is possible, but a pure transition through one functional `useState` update is sufficient for this scope. Multi-method payment controls and a separate checkout route add UI without a requirement. Silently emptying cart on store switch risks accidental loss; blocking with a visible explanation is safer.
+
+## Risks / Trade-offs
+
+- [Stock or price changes between cart edit and submission] → revalidate and reprice from latest inventory in the pure checkout transition; report which line needs correction.
+- [Rapid double click or updater replay] → pure functional transition, empty-cart precondition after first success, no side effects inside updater, and a disabled success-state submit control.
+- [Account switch leaks a cart] → owner ID checks on every operation/view and explicit cart clear on logout; authorization remains mock/frontend-only.
+- [Commercial state disappears on reload] → plainly label session-only behavior and show accurate empty history; do not broaden `localStorage` use.
+- [Data relationships become inconsistent] → test unique IDs, `sale.orderId`, exact payment sum, item snapshots, and one-store-only inventory decrements with pure transition tests.
+- [Long UI components or stale permission copies] → split focused components, run existing component-size check, and reuse central destination policy.
+
+## Migration Plan
+
+In the later implementation prompt, extend only the React frontend's DataContext, pure business helpers, central route table, client shopping pages/components/styles, and focused tests. Existing M1 assets and unaffected feature files remain. No deployment or persistent-data migration is involved. Before implementation, planning artifacts alone are created and strictly validated; no source changes occur in this prompt.

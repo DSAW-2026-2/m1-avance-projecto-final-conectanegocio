@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="ConectaNegocio centraliza la comparación de ofertas, la conversación con proveedores y el seguimiento de pedidos para pequeños comercios."
+    >
+    <title>ConectaNegocio | Abastecimiento conectado</title>
+    <script src="js/theme-init.js"></script>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/pages/home.css">
+  </head>
+  <body data-page="inicio">
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="site-header">
+      <div class="container header-layout">
+        <div class="header-identity">
+          <a class="brand" href="index.html" aria-label="ConectaNegocio, ir al inicio">
+            <span class="brand-mark" aria-hidden="true">CN</span>
+            <span class="brand-name">Conecta<strong>Negocio</strong></span>
+          </a>
+          <button
+            class="button secondary button--register"
+            id="open-registration"
+            type="button"
+            aria-haspopup="dialog"
+            aria-controls="registration-dialog"
+          >
+            <span aria-hidden="true">＋</span>
+            <span class="button--register-label">Registrar usuario</span>
+          </button>
+        </div>
+
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+          <ul class="nav-list">
+            <li><a href="index.html" aria-current="page">Inicio</a></li>
+            <li><a href="pages/comerciante.html">Comerciante</a></li>
+            <li><a href="pages/ofertas.html">Ofertas</a></li>
+            <li><a href="pages/seguimiento.html">Seguimiento</a></li>
+            <li><a href="pages/proveedor.html">Proveedor</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button class="theme-button" id="theme-toggle" type="button" aria-pressed="false">
+            <b aria-hidden="true">◐</b>
+            <span>Modo oscuro</span>
+          </button>
+          <button
+            class="icon-button mobile-nav-toggle"
+            id="mobile-nav-toggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="site-nav"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <dialog
+      class="registration-dialog"
+      id="registration-dialog"
+      aria-labelledby="registration-title"
+      aria-describedby="registration-description"
+    >
+      <section class="registration">
+        <header class="registration__header">
+          <div>
+            <p class="eyebrow">Cuenta demostrativa</p>
+            <h2 id="registration-title">Registrar usuario</h2>
+            <p id="registration-description">
+              Este registro se guardará únicamente en este navegador y no crea una cuenta real.
+            </p>
+          </div>
+          <button
+            class="icon-button registration__close"
+            id="close-registration"
+            type="button"
+            aria-label="Cerrar formulario de registro"
+          >
+            ×
+          </button>
+        </header>
+
+        <form class="registration__form" id="registration-form" novalidate>
+          <div class="registration__fields">
+            <div class="form-field registration__field--full">
+              <label for="registration-full-name">Nombre completo</label>
+              <input
+                id="registration-full-name"
+                name="fullName"
+                type="text"
+                autocomplete="name"
+                minlength="3"
+                maxlength="80"
+                required
+                aria-describedby="registration-full-name-error"
+              >
+              <small
+                class="field-error"
+                id="registration-full-name-error"
+                data-error-for="fullName"
+                aria-live="polite"
+              ></small>
+            </div>
+
+            <div class="form-field">
+              <label for="registration-role">Tipo de usuario</label>
+              <select
+                id="registration-role"
+                name="role"
+                required
+                aria-describedby="registration-role-error"
+              >
+                <option value="">Seleccione una opción</option>
+                <option value="merchant">Comerciante</option>
+                <option value="distributor">Distribuidor</option>
+              </select>
+              <small
+                class="field-error"
+                id="registration-role-error"
+                data-error-for="role"
+                aria-live="polite"
+              ></small>
+            </div>
+
+            <div class="form-field">
+              <label for="registration-job-title">Cargo dentro de la empresa</label>
+              <input
+                id="registration-job-title"
+                name="jobTitle"
+                type="text"
+                minlength="2"
+                maxlength="60"
+                required
+                aria-describedby="registration-job-title-error"
+              >
+              <small
+                class="field-error"
+                id="registration-job-title-error"
+                data-error-for="jobTitle"
+                aria-live="polite"
+              ></small>
+            </div>
+
+            <div class="form-field password-field registration__field--full">
+              <label for="registration-password">Contraseña</label>
+              <div class="password-field__control">
+                <input
+                  id="registration-password"
+                  name="password"
+                  type="password"
+                  autocomplete="new-password"
+                  minlength="8"
+                  maxlength="128"
+                  required
+                  aria-describedby="registration-password-hint registration-password-error"
+                >
+                <button
+                  class="button ghost password-toggle"
+                  id="registration-password-toggle"
+                  type="button"
+                  aria-label="Mostrar contraseña"
+                  aria-pressed="false"
+                >
+                  Mostrar
+                </button>
+              </div>
+              <small class="field-hint" id="registration-password-hint">
+                Usa al menos 8 caracteres, una letra y un número. No utilices una contraseña real.
+              </small>
+              <small
+                class="field-error"
+                id="registration-password-error"
+                data-error-for="password"
+                aria-live="polite"
+              ></small>
+            </div>
+
+            <div class="two-factor-field registration__field--full">
+              <input
+                id="registration-two-factor"
+                name="twoFactorEnabled"
+                type="checkbox"
+                aria-describedby="registration-two-factor-hint"
+              >
+              <label for="registration-two-factor">Activar autenticación de dos factores</label>
+              <small class="field-hint" id="registration-two-factor-hint">
+                Función demostrativa: no se enviarán códigos reales.
+              </small>
+            </div>
+          </div>
+
+          <div class="registration__actions">
+            <button class="button primary" type="submit">Crear cuenta demostrativa</button>
+            <button class="button ghost" id="cancel-registration" type="button">Cancelar</button>
+          </div>
+        </form>
+      </section>
+
+      <section
+        class="registration-notification"
+        id="registration-notification"
+        role="alertdialog"
+        aria-modal="true"
+        aria-labelledby="registration-notification-title"
+        aria-describedby="registration-notification-text"
+        hidden
+      >
+        <div class="notification-card">
+          <h3 id="registration-notification-title">Este usuario ya está registrado.</h3>
+          <p id="registration-notification-text">
+            Revisa el nombre, el tipo de usuario y el cargo ingresados.
+          </p>
+          <button
+            class="button primary"
+            id="close-registration-notification"
+            type="button"
+          >
+            Entendido
+          </button>
+        </div>
+      </section>
+    </dialog>
+
+    <main id="contenido-principal">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">Abastecimiento para pequeños comercios</p>
+            <h1 id="hero-title">
+              Compara, conversa y haz seguimiento <em>sin cambiar de plataforma.</em>
+            </h1>
+            <p>
+              ConectaNegocio reúne ofertas, negociaciones y pedidos en un solo recorrido para que
+              abastecer una papelería sea más claro, rápido y trazable.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="pages/comerciante.html">Explorar como comerciante</a>
+              <a class="button secondary" href="pages/proveedor.html">Explorar como proveedor</a>
+            </div>
+            <ul class="benefit-list" aria-label="Beneficios principales">
+              <li>Atributos comparables</li>
+              <li>Contexto conservado</li>
+              <li>Entregas trazables</li>
+            </ul>
+          </div>
+
+          <div class="hero-window" aria-label="Ejemplo de comparación de ofertas">
+            <div class="window-bar">
+              <strong>CN · Comparador</strong>
+              <span>3 ofertas</span>
+            </div>
+            <p class="eyebrow">Cuaderno argollado · 100 hojas</p>
+            <div class="offer-preview">
+              <span>
+                <strong>Distribuciones Andina</strong>
+                <small>Compra mínima: 12</small>
+              </span>
+              <strong>$12.500</strong>
+              <small>2 días</small>
+            </div>
+            <div class="offer-preview">
+              <span>
+                <strong>Suministros Nova</strong>
+                <small>Compra mínima: 24</small>
+              </span>
+              <strong>$11.900</strong>
+              <small>4 días</small>
+            </div>
+            <div class="offer-preview">
+              <span>
+                <strong>Comercializadora Prisma</strong>
+                <small>Compra mínima: 6</small>
+              </span>
+              <strong>$13.200</strong>
+              <small>1 día</small>
+            </div>
+            <div class="hero-actions">
+              <a class="button primary" href="pages/comparador.html">Abrir comparación</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="demo-notice" aria-label="Aviso sobre los datos">
+        <div class="container">
+          <p>
+            <strong>Prototipo académico:</strong> Sol y Luna es el caso real que fundamenta el
+            problema; los perfiles, proveedores, productos, precios y actividades de la
+            demostración son ficticios.
+          </p>
+        </div>
+      </aside>
+
+      <section class="section surface" id="problema" aria-labelledby="problem-title">
+        <div class="container two-column-layout">
+          <div class="section-heading">
+            <p class="eyebrow">El problema real</p>
+            <h2 id="problem-title">
+              Abastecer un negocio no debería depender de información dispersa.
+            </h2>
+          </div>
+          <div>
+            <p>
+              <strong>Sol y Luna</strong>, una papelería de Chía, consulta a cada proveedor por
+              separado y compara manualmente precio, referencia, presentación, compra mínima,
+              disponibilidad y entrega.
+            </p>
+            <p>
+              Las llamadas, WhatsApp, facturas y notas no conservan una relación clara entre lo
+              cotizado, lo acordado y lo recibido. Esto consume tiempo y aumenta el riesgo de pedir
+              una referencia equivocada o perder el estado de una entrega.
+            </p>
+            <div class="context-card">
+              <strong>Necesidad central</strong>
+              <span>
+                Comparar ofertas, conversar con contexto y conocer qué falta por entregar desde un
+                mismo lugar.
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="solucion" aria-labelledby="solution-title">
+        <div class="container">
+          <div class="section-heading centered">
+            <p class="eyebrow">Una solución enfocada</p>
+            <h2 id="solution-title">Tres funciones conectadas de principio a fin.</h2>
+            <p>
+              El proyecto se concentra en la relación entre comerciantes y proveedores, sin
+              intentar reemplazar el inventario, la facturación o los pagos.
+            </p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <span class="feature-number">01</span>
+              <h3>Comparar ofertas</h3>
+              <p>
+                Contrasta precio, presentación, compra mínima, disponibilidad, forma de pago y
+                tiempo de entrega.
+              </p>
+              <a class="table-link" href="pages/ofertas.html">Explorar ofertas →</a>
+            </article>
+            <article class="feature-card">
+              <span class="feature-number">02</span>
+              <h3>Chat contextual</h3>
+              <p>
+                Conserva la conversación asociada al producto o pedido para que las condiciones no
+                se pierdan.
+              </p>
+              <a class="table-link" href="pages/chat.html">Abrir conversación →</a>
+            </article>
+            <article class="feature-card">
+              <span class="feature-number">03</span>
+              <h3>Seguir pedidos</h3>
+              <p>
+                Consulta estados, responsables, historial y cantidades recibidas, incluso en
+                entregas parciales.
+              </p>
+              <a class="table-link" href="pages/seguimiento.html">Ver seguimiento →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark-section" aria-labelledby="flow-title">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Recorrido demostrable</p>
+            <h2 id="flow-title">De la necesidad a la recepción confirmada.</h2>
+            <p>
+              El prototipo conserva el contexto entre pantallas mediante datos simulados en el
+              navegador.
+            </p>
+          </div>
+          <ol class="flow-list">
+            <li><span>1</span><strong>Buscar<small>Producto requerido</small></strong></li>
+            <li><span>2</span><strong>Comparar<small>Condiciones equivalentes</small></strong></li>
+            <li><span>3</span><strong>Conversar<small>Negociación contextual</small></strong></li>
+            <li><span>4</span><strong>Solicitar<small>Pedido al proveedor</small></strong></li>
+            <li><span>5</span><strong>Confirmar<small>Recepción total o parcial</small></strong></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section surface" aria-labelledby="roles-title">
+        <div class="container">
+          <div class="section-heading centered">
+            <p class="eyebrow">Dos roles</p>
+            <h2 id="roles-title">Una sola fuente de información, permisos diferentes.</h2>
+          </div>
+          <div class="role-grid">
+            <article class="role-card">
+              <p class="eyebrow">Comerciante</p>
+              <h3>Quien administra el negocio</h3>
+              <p>
+                Busca productos, compara ofertas, conversa, crea pedidos y confirma las cantidades
+                recibidas.
+              </p>
+              <a class="button secondary" href="pages/comerciante.html">Entrar al panel</a>
+            </article>
+            <article class="role-card">
+              <p class="eyebrow">Proveedor</p>
+              <h3>Quien publica y despacha</h3>
+              <p>
+                Administra sus ofertas, responde consultas, confirma pedidos y actualiza
+                preparación y entrega.
+              </p>
+              <a class="button secondary" href="pages/proveedor.html">Entrar al panel</a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <p>
+          <strong>ConectaNegocio</strong><br>
+          Proyecto académico · Universidad de La Sabana · 2026
+        </p>
+        <div class="footer-links">
+          <a href="https://github.com/JoseAlejandroMeloM/M1---Desarrollo-Web---C1">Repositorio</a>
+          <a href="https://www.figma.com/design/i0LHQGczrAGr6AqProBqJV/Proyecto-DSAW?node-id=0-1&t=ZS6t7uOzXtOQ8xty-1">Figma</a>
+          <a href="docs/Links.md">Todos los enlaces</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="global-toast" id="global-toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
